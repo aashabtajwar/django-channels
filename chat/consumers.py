@@ -17,3 +17,9 @@ class ChatConsumer (WebsocketConsumer):
                 'message' : 'You are now connected',
             }
         ))
+
+    # listen for messages
+    def receive(self, text_data):
+        text_data_json = json.loads(text_data)
+        message = text_data_json['message']
+        print(message)
