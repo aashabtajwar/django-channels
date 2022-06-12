@@ -48,6 +48,12 @@ INSTALLED_APPS = [
 # point channels to root routing configuration
 ASGI_APPLICATION = 'channelsite.asgi.application'
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND' : 'channels.layers.InMemoryChannelLayer'
+    }
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

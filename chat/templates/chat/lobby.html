@@ -13,6 +13,8 @@
         <input type="text" name="message" id="message">
     </form>
 
+    <div id="s-messages"></div>
+
     <!-- establish websocket connection -->
     <script>
         let url = `ws://${window.location.host}/ws/socket-server/`;
@@ -22,6 +24,14 @@
         chatSocket.onmessage = function(e) {
             let data = JSON.parse(e.data);
             console.log('Data: ', data);
+
+            if (data.type == 'chat') {
+                let message = document.getElementById('s-messages');
+                message.innerHTML = data.message;
+                // message.insertAdjacentElement('beforeend', `<div>
+                //                         <p>${data.message}</p>
+                //                     </div>`)
+            }
         }
 
         let form = document.getElementById('form');
